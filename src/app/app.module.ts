@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule, HttpModule, JsonpModule, HttpClientModule, NgxBarcodeModule
+    BrowserModule, HttpModule, JsonpModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

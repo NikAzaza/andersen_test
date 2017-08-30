@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import 'webrtc-adapter/out/adapter.js';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,41 +20,22 @@ export class AppComponent implements OnInit {
   private nav;
   private dev;
   private stream;
+  private isCam = false;
+
   @ViewChild('hardwareVideo') hardwareVideo: any;
+
 constructor(private http: HttpClient,
             private h: Http,
             private renderer: Renderer2) { }
   ngOnInit(): void {
-
     this.video = this.hardwareVideo.nativeElement;
     this.nav = <any>navigator;
 
-    if (this.nav.mediaDevices === undefined) {
-      this.nav.mediaDevices = {};
-    }
+    const constraints = { audio: true, video: true };
+    this.nav.mediaDevices.getUserMedia(constraints)
+    .then(stream => {this.stream = stream; console.log(stream); } )
+    .catch(e => console.error(e));
 
-    if (this.nav.mediaDevices.getUserMedia === undefined) {
-      this.nav.mediaDevices.getUserMedia = function(constraints) {
-        let getUserMedia = this.nav.webkitGetUserMedia || this.nav.mozGetUserMedia;
-
-        if (!getUserMedia) {
-          return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-        }
-        return new Promise(function(resolve, reject) {
-          getUserMedia.call(this.nav, constraints, resolve, reject);
-        });
-      }
-    }
-
-    const constraints = { audio: true, video: { width: 320, height: 240 } };
-
-    this.nav.mediaDevices.getUserMedia({ audio: true, video: true })
-      .then((stream) => {
-        this.stream = stream;
-      })
-      .catch(function(err) {
-        console.log(err.name + ': ' + err.message);
-      });
   }
 
   videoStart() {
@@ -62,6 +45,7 @@ constructor(private http: HttpClient,
         } else {
           this.video.src = window.URL.createObjectURL(this.stream);
         }
+    this.isCam = true;
     this.video.play();
   }
 
@@ -125,6 +109,7 @@ constructor(private http: HttpClient,
   public makePhoto() {
     this.videoPause();
     this.picToCanvas();
+    this.stream = null;
    // const video = <any>document.getElementsByTagName('video')[0];
     this.renderer.setStyle(this.video, 'display', 'none');
   }

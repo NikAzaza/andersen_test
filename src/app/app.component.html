@@ -4,19 +4,19 @@
 </div>
   <div class="video-control">
     <button (click)="videoStart()" style="margin: 5px 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer">Включить видео</button>
-    <button (click)="videoPause()" style="margin: 5px 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer">Пауза</button>
+    <button (click)="videoPause()" style="margin: 5px 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer" *ngIf="isCam">Пауза</button>
   </div>
 
   <div class="image-manipulation" style="padding: 10px 0;">
-     <button (click)="picToCanvas()" style="margin: 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer">Захватить кадр из видео</button>
-     <button (click)="makePhoto()" style="margin: 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer"> СДЕЛАТЬ ФОТО</button>
+     <button (click)="picToCanvas()" style="margin: 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer" *ngIf="isCam">Захватить кадр из видео</button>
+     <button (click)="makePhoto()" style="margin: 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer" *ngIf="isCam"> СДЕЛАТЬ ФОТО</button>
     <!-- <button type="button" (click)="sendPicToServer()" style="margin: 5px 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer">Отправить фото на сервер</button>  -->
-     <button (click)="clearPhoto()"  style="margin: 5px 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer">Очистить холст</button>
+     <button (click)="clearPhoto()"  style="margin: 5px 10px; padding: 15px; background: #F59300; border: 1px solid black; cursor: pointer" *ngIf="isCam">Очистить холст</button>
   </div>
  
  
   <div class="links-wrapper" style="padding: 10px 0;">
-    <a (click)="savePhoto()" id="save" style="display: inline-block; margin: 10px; padding: 10px;background: #7DF5D1;border: 1px solid red; cursor: pointer">Сохранить как картинку</a> <br>
+    <a (click)="savePhoto()" id="save" style="display: inline-block; margin: 10px; padding: 10px;background: #7DF5D1;border: 1px solid red; cursor: pointer" *ngIf="isCam">Сохранить как картинку</a> <br>
      <!-- <a href="image.php" class="btn btn-success" style="display: inline-block; margin: 10px; padding: 10px;background: #7DF5D1;border: 1px solid red; cursor: pointer"> <span>на страницу с изображением</span></a>   -->
   </div>
   
@@ -27,5 +27,3 @@
 <div>
   <canvas id="photo" width="240"></canvas>
 </div>
-
-<ngx-barcode [bc-value]="value" [bc-display-value]="true"></ngx-barcode>
