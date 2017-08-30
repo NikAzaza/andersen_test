@@ -45,7 +45,9 @@ constructor(private http: HttpClient,
         } else {
           this.video.src = window.URL.createObjectURL(this.stream);
         }
-    this.isCam = true;
+    if (this.stream) {
+      this.isCam = true;
+    }
     this.video.play();
   }
 
