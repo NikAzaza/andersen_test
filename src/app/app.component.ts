@@ -1,4 +1,5 @@
 import { Component, ViewChild, ViewChildren, OnInit, ElementRef, Renderer2} from '@angular/core';
+import { AppBarcodeComponent } from '../app-barcode/app-barcode.component';
 
 import { Observable } from 'rxjs/Observable';
 import { Response, Headers, RequestOptions, Http} from '@angular/http';
@@ -22,12 +23,14 @@ export class AppComponent implements OnInit {
   private stream;
   private isCam = false;
 
+
   @ViewChild('hardwareVideo') hardwareVideo: any;
 
 constructor(private http: HttpClient,
             private h: Http,
             private renderer: Renderer2) { }
   ngOnInit(): void {
+
     this.video = this.hardwareVideo.nativeElement;
     this.nav = <any>navigator;
 
@@ -76,7 +79,7 @@ constructor(private http: HttpClient,
             <body >
             ${printContents}
             </body>
-            <script>setTimeout( function(){window.print();}, 100);</script>
+            <script>setTimeout( function(){alert('start printing if it is available..'); window.print();}, 100);</script>
         </html>`
       );
     popupWin.document.close();

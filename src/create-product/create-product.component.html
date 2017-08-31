@@ -1,0 +1,14 @@
+<!--component html goes here -->
+<ActionBar title="Create Product">
+    <ActionItem text="Save" (tap)="save()" ios.position="right"></ActionItem>
+</ActionBar>
+<StackLayout>
+    <Label text="Product" class="fieldTitle"></Label>
+    <TextField [(ngModel)]="product.name"></TextField>
+    <Label text="Price" class="fieldTitle"></Label>
+    <TextField [(ngModel)]="product.price"></TextField>
+    <Label text="Inventory" class="fieldTitle"></Label>
+    <TextField [(ngModel)]="product.inventory"></TextField>
+    <Label text="Sku" class="fieldTitle"></Label>
+    <TextField [(ngModel)]="product.sku"></TextField>
+</StackLayout>

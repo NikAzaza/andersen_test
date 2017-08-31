@@ -1,20 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
+import { NgModule, ValueProvider } from '@angular/core';
+import { BarcodeScanner } from 'nativescript-barcodescanner/barcodescanner.common';
 import {HttpClientModule} from '@angular/common/http';
 
-import { NgxBarcodeModule } from 'ngx-barcode';
 import { AppComponent } from './app.component';
-// import { AppBarcodeComponent } from './app-barcode';
+import {Routes, RouterModule} from '@angular/router';
+
+
+
+export function createBarcodeScanner() {
+  return new BarcodeScanner();
+}
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule, HttpModule, JsonpModule, HttpClientModule
+    BrowserModule, HttpModule, JsonpModule, HttpClientModule, RouterModule
   ],
-  providers: [],
+  providers: [ { provide: BarcodeScanner, useFactory: (createBarcodeScanner) }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

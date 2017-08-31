@@ -2,19 +2,19 @@
 import { NgModule } from '@angular/core';
 
 // This Module's Components
-import { AppBarcodeComponent } from './app-barcode.component';
+import { CreateProductComponent } from './create-product.component';
 
 @NgModule({
     imports: [
 
     ],
     declarations: [
-        AppBarcodeComponent,
+        CreateProductComponent,
     ],
     exports: [
-        AppBarcodeComponent,
+        CreateProductComponent,
     ]
 })
-export class AppBarcodeModule {
+export class CreateProductModule {
 
 }
