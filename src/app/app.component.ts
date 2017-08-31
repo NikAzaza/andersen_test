@@ -38,8 +38,9 @@ constructor(private http: HttpClient,
     this.nav.mediaDevices.getUserMedia(constraints)
     .then(stream => {this.stream = stream; console.log(stream); } )
     .catch(e => console.error(e));
-  
   }
+
+
 
   videoStart() {
     this.renderer.setStyle(this.video, 'display', 'block');
