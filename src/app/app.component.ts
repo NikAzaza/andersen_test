@@ -1,5 +1,5 @@
 import { Component, ViewChild, ViewChildren, OnInit, ElementRef, Renderer2} from '@angular/core';
-import { AppBarcodeComponent } from '../app-barcode/app-barcode.component';
+
 
 import { Observable } from 'rxjs/Observable';
 import { Response, Headers, RequestOptions, Http} from '@angular/http';
@@ -38,7 +38,7 @@ constructor(private http: HttpClient,
     this.nav.mediaDevices.getUserMedia(constraints)
     .then(stream => {this.stream = stream; console.log(stream); } )
     .catch(e => console.error(e));
-
+  
   }
 
   videoStart() {
@@ -79,7 +79,7 @@ constructor(private http: HttpClient,
             <body >
             ${printContents}
             </body>
-            <script>setTimeout( function(){console.log('start printing if it is available..'); window.print();}, 100);</script>
+            <script>setTimeout( function(){ window.print();}, 100);</script>
         </html>`
       );
     popupWin.document.close();
