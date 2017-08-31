@@ -34,7 +34,7 @@ constructor(private http: HttpClient,
     this.video = this.hardwareVideo.nativeElement;
     this.nav = <any>navigator;
 
-    const constraints = { audio: true, video: true };
+    const constraints = { video: true };
     this.nav.mediaDevices.getUserMedia(constraints)
     .then(stream => {this.stream = stream; console.log(stream); } )
     .catch(e => console.error(e));
@@ -79,7 +79,7 @@ constructor(private http: HttpClient,
             <body >
             ${printContents}
             </body>
-            <script>setTimeout( function(){alert('start printing if it is available..'); window.print();}, 100);</script>
+            <script>setTimeout( function(){console.log('start printing if it is available..'); window.print();}, 100);</script>
         </html>`
       );
     popupWin.document.close();
