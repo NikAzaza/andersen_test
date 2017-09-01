@@ -35,20 +35,16 @@ constructor(private http: HttpClient,
     this.nav = <any>navigator;
 
     const constraints = { video: true };
-
+/*
     console.log(this.nav.webkitGetUserMedia(constraints , function(stream) { alert(stream); },
             function() { alert('webkitUser media not work!'); }));
-
-    console.log(this.nav.mediaDevices.getUserMedia(constraints , function(stream) { alert(stream); },
-          function() { alert('webkitUser media not work!'); }));
 
   // console.log(azaza.browserShim.shimGetUserMedia());
   // console.log(azaza.browserShim.shimMediaStream);
       this.nav.mediaDevices.getUserMedia(constraints)
     // azaza.browserShim.shimMediaStream(constraints)
-
     .then(stream => {this.stream = stream; console.log(stream); alert(this.stream); } )
-    .catch(e => console.error(e));
+    .catch(e => console.error(e));*/
   }
 
 
