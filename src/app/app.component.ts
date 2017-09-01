@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import 'webrtc-adapter/out/adapter.js';
+import window from 'webrtc-adapter/out/adapter.js';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +35,21 @@ constructor(private http: HttpClient,
     this.nav = <any>navigator;
 
     const constraints = { video: true };
-    this.nav.mediaDevices.getUserMedia(constraints)
-    .then(stream => {this.stream = stream; console.log(stream); } )
+
+    console.log(this.nav.webkitGetUserMedia(constraints , function(stream) { alert(stream); },
+            function() { alert('webkitUser media not work!'); }));
+
+    console.log(this.nav.mediaDevices.getUserMedia(constraints , function(stream) { alert(stream); },
+          function() { alert('webkitUser media not work!'); }));
+
+  // console.log(azaza.browserShim.shimGetUserMedia());
+  // console.log(azaza.browserShim.shimMediaStream);
+      this.nav.mediaDevices.getUserMedia(constraints)
+    // azaza.browserShim.shimMediaStream(constraints)
+
+    .then(stream => {this.stream = stream; console.log(stream); alert(this.stream); } )
     .catch(e => console.error(e));
   }
-
 
 
   videoStart() {
